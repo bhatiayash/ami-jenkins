@@ -1,1 +1,1 @@
-# ami-jenkins
+# Jenkins AMI 
