@@ -57,7 +57,7 @@ build {
   sources = ["source.amazon-ebs.jenkins-ami"]
 
   provisioner "shell" {
-    script = ".scripts/setup.sh"
+    script = "scripts/setup.sh"
     environment_vars = [
       "DEBIAN_FRONTEND=noninteractive",
       "CHECKPOINT_DISABLE=1"
