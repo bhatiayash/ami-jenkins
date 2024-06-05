@@ -48,3 +48,19 @@ echo "Starting Caddy"
 echo "================================="
 sudo systemctl start caddy
 sudo systemctl enable caddy
+
+# Installing Docker
+echo "================================="
+echo "Installing Docker"
+echo "================================="
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+sudo usermod -aG docker jenkins
+
+echo "================================="
+echo "Restarting Jenkins"
+echo "================================="
+sudo systemctl enable jenkins
+sudo systemctl restart jenkins
