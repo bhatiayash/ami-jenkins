@@ -19,6 +19,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
+      - name: Jenkins Configuration as Code artifacts
+        run: |
+          cd jenkins && cp jcasc.yaml ../ && cd ..
+          cd scripts  && cp *.groovy ../ && cd ..
+          tar -czvf configs.tgz jcasc.yaml *.groovy
+          rm -rf jcasc.yaml *.groovy
+
       - name: Setup packer
         uses: hashicorp/setup-packer@main
         with:
