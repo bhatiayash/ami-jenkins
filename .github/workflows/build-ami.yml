@@ -19,6 +19,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
+      - name: Replace placeholders in jcasc.yaml
+        run: |
+          sed -i 's/__GIT_USERNAME__/${{ secrets.GIT_USERNAME }}/g' ./jenkins/jcasc.yaml
+          sed -i 's/__GIT_CREDS__/${{ secrets.GIT_CREDS }}/g' ./jenkins/jcasc.yaml
+          sed -i 's/__DOCKERHUB_USERNAME__/${{ secrets.DOCKERHUB_USERNAME }}/g' ./jenkins/jcasc.yaml
+          sed -i 's/__DOCKERHUB_PASSWORD__/${{ secrets.DOCKERHUB_PASSWORD }}/g' ./jenkins/jcasc.yaml
+        env:
+          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+          GIT_CREDS: ${{ secrets.GIT_CREDS }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
       - name: Jenkins Configuration as Code artifacts
         run: |
           cd jenkins && cp jcasc.yaml ../ && cd ..
