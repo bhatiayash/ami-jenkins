@@ -31,16 +31,6 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Debug Output
-        run: |
-          echo "AWS Region: $AWS_REGION"
-          echo "Git Username: $GIT_USERNAME"
-          echo "DockerHub Username: $DOCKERHUB_USERNAME"
-        env:
-          AWS_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-
       - name: Jenkins Configuration as Code artifacts
         run: |
           cd jenkins && cp jcasc.yaml ../ && cd ..
